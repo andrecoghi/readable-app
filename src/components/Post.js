@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { formatTweet, formatDate, _toArray, _toMap, _fromJsonToArray} from '../utils/helpers'
-import { handlePostVote, handleDeletePost, handleSavePost } from '../actions/tweets'
+import { formatDate, _toMap, _fromJsonToArray} from '../utils/helpers'
+import { handlePostVote, handleDeletePost, handleSavePost } from '../actions/posts'
 import { Link, withRouter } from 'react-router-dom'
 
-class Tweet extends Component {
+class Post extends Component {
 
      handleVote = (e) => {
         const { dispatch, id } = this.props
@@ -33,14 +33,14 @@ class Tweet extends Component {
 
         return (
                 <div className='tweet-info'>
-                            <Link to={`/post/${id}`} className='tweet' className="no-border">
+                            <Link to={`/post/${id}`} className='tweet' >
                                 <h3>{post.title}</h3>
                             </Link>
                             <div><p>{post.category}</p></div>
-                            <div>{formatDate(post.timestamp)} Comments: {post.commentCount !== 0 && post.commentCount}</div>
+                            <div>{formatDate(post.timestamp)} Comments: {post.commentCount !== 0 ? post.commentCount : 0}</div>
                             <div>By @{autheduser} </div>
                             <div className='post-actions'>
-                                <Link to={`/post/edit/${id}`} className='tweet' className="no-border">
+                                <Link to={`/post/edit/${id}`} className='tweet' >
                                     <button className='button-action'>Edit Post</button>
                                 </Link>
                                 <button onClick={this.handleDelete} className='button-action'>Delete Post</button>
@@ -72,4 +72,4 @@ function mapStateToProps ({autheduser, posts}, { id}) {
     }
 }
 
-export default withRouter(connect(mapStateToProps)(Tweet))
+export default withRouter(connect(mapStateToProps)(Post))

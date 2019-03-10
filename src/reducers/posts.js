@@ -5,7 +5,7 @@ import {
   RECEIVE_POSTS,
   RECEIVE_POST,
   SORT_POST,
-} from "../actions/tweets";
+} from "../actions/posts";
 
 import { ADD_COMMENT, DELETE_COMMENT } from '../actions/comments';
 

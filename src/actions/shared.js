@@ -1,6 +1,6 @@
 import { getInitialData } from '../utils/api'
-import { receive_posts } from './tweets'
-import { receive_categories } from './users'
+import { receive_posts } from './posts'
+import { receive_categories } from './categories'
 import { receive_auth_user } from './autheduser'
 import { showLoading, hideLoading } from 'react-redux-loading-bar'
 

@@ -1,11 +1,10 @@
 import React, { Component, Fragment  } from 'react'
-import { handleSavePost } from '../actions/tweets'
+import { handleSavePost } from '../actions/posts'
 import { handleAddComment } from '../actions/comments'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
 class PostNew extends Component {
-
 
     state = {
         title: '' ,
@@ -14,7 +13,7 @@ class PostNew extends Component {
         toHome: false,
         submitedFlag: false,
     }
-    //generic handleChange
+
     handleChange = (e) => {
         const stateItem = e.target.id
         const value = e.target.value
@@ -50,7 +49,7 @@ class PostNew extends Component {
             return <Redirect to={"/"}   />
         }
 
-        const tweetLeft = 280 - body.length
+        const postLeft = 280 - body.length
 
         return (
             <Fragment>
@@ -88,9 +87,9 @@ class PostNew extends Component {
                     className='textarea'
                     maxLength={280}
                 />
-                {tweetLeft <= 100 && (
+                {postLeft <= 100 && (
                     <div className='tweet-length'>
-                        {tweetLeft}
+                        {postLeft}
                     </div>
                 )}
                 <button

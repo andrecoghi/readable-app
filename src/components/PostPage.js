@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Tweet from './Tweet'
+import Post from './Post'
 import Comment from './Comment'
 import PostNew from './PostNew'
 import { _toArray} from '../utils/helpers'
 import { handleComments} from '../actions/comments'
 
-class TweetPage extends Component {
+class PostPage extends Component {
 
      componentDidMount() {
         this.props.dispatch(handleComments(this.props.match.params.id))
@@ -18,7 +18,7 @@ class TweetPage extends Component {
 
         return (
             <div>
-                <Tweet id={id}  />
+                <Post id={id}  />
                 <div className='separator'></div>
                 <div className='comment-list'>
                     {comments && comments.length !== 0 && <h3 className='center'>Comments</h3>}
@@ -51,4 +51,4 @@ function mapStateToProps ({comments}, props) {
     }
 }
 
-export default connect(mapStateToProps)(TweetPage)
+export default connect(mapStateToProps)(PostPage)

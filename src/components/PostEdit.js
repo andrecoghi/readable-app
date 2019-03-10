@@ -1,5 +1,5 @@
 import React, { Component, Fragment  } from 'react'
-import { handleSavePost } from '../actions/tweets'
+import { handleSavePost } from '../actions/posts'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { _toMap, _fromJsonToArray } from '../utils/helpers'
@@ -47,7 +47,7 @@ class PostEdit extends Component {
             return <Redirect to={"/"}   />
         }
 
-        const tweetLeft = 280 - body.length
+        const postLeft = 280 - body.length
 
         return (
             <Fragment>
@@ -79,9 +79,9 @@ class PostEdit extends Component {
                     className='textarea'
                     maxLength={280}
                 />
-                {tweetLeft <= 100 && (
+                {postLeft <= 100 && (
                     <div className='tweet-length'>
-                        {tweetLeft}
+                        {postLeft}
                     </div>
                 )}
                 <button

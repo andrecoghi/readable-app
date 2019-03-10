@@ -6,7 +6,6 @@ import {
 } from "../utils/api";
 import { generateUID } from "../utils/helpers";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
-import { _toArray, _toMap } from "../utils/helpers";
 
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const ADD_POST = "ADD_POST";

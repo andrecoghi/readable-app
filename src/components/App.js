@@ -5,7 +5,7 @@ import Dashboard from "./Dashboard";
 import LoadingBar from 'react-redux-loading-bar'
 import PostNew from "./PostNew";
 import PostEdit from "./PostEdit";
-import TweetPage from "./TweetPage";
+import PostPage from "./PostPage";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Nav from "./Nav";
@@ -27,7 +27,7 @@ class App extends Component {
                 <Nav />
                 <Route path="/" exact component={Dashboard} />
                 <Route path="/category/:category" exact component={Dashboard} />
-                <Route path="/post/:id" exact component={TweetPage} />
+                <Route path="/post/:id" exact component={PostPage} />
                 <Route path="/post/edit/:id" exact component={PostEdit} />
                 <Route path="/new" exact component={PostNew} />
               </div>

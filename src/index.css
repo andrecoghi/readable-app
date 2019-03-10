@@ -75,14 +75,14 @@ li {
 }
 
 .tweet {
-  width: 100%;
   max-width: 590px;
   padding: 10px;
-  display: flex;
+  display: inline;
   margin: 0 auto;
-  border: 1px solid #dad7d7;
-  border-radius: 3px;
+  border: none;
+  background: transparent;
   cursor: pointer;
+  padding: 0 0 20px;
 }
 
 .tweet-info {
@@ -226,6 +226,7 @@ li {
 .post-vote-down {
   margin: 0 0 0 -20px;
   padding-left: 33px;
+  padding-right: 15px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   background: hsl(320, 6%, 79%);
@@ -323,4 +324,16 @@ li {
 
 .post-actions {
   margin: 10px 0 20px;
+}
+
+/* Posts Order */
+.posts-order {
+  text-align: center;
+  margin: 0 0 20px;
+  font-size: 14px;
+  line-height: 18px;
+}
+.posts-order button {
+  margin: 0 0 0 10px;
+  text-transform: capitalize;
 }

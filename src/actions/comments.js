@@ -6,8 +6,6 @@ import {
   fetchEditComment
 } from "../utils/api";
 import { generateUID } from "../utils/helpers";
-import { _toArray, _toMap } from "../utils/helpers";
-import { increasePostCommentCount, decreasePostCommentCount, edit_post } from '../actions/tweets'
 
 export const INCREASE_COMMENT_VOTES = "INCREASE_COMMENT_VOTES";
 export const DECREASE_COMMENT_VOTES = "DECREASE_COMMENT_VOTES";

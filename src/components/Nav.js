@@ -28,7 +28,7 @@ class Nav extends Component {
             ))}
           <li>
             <NavLink to="/new" activeClassName="active">
-              New Tweet
+              New Post
             </NavLink>
           </li>
         </ul>
