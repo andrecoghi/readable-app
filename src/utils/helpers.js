@@ -32,36 +32,6 @@ export function generateUID() {
   );
 }
 
-export function formatTweet(post, authedUser, parentPost) {
-  const {
-    id,
-    author,
-    category,
-    voteScore,
-    commentCount,
-    body,
-    timestamp,
-    title
-  } = post;
-  return {
-    id,
-    timestamp,
-    body,
-    author,
-    title,
-    authedUser,
-    category,
-    commentCount: commentCount,
-    voteScore,
-    parent: !parentPost
-      ? null
-      : {
-          author: parentPost.author,
-          id: parentPost.id
-        }
-  };
-}
-
 // function for dynamic sorting
 export function compareValues(key, order = "asc") {
   return function(a, b) {
