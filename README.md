@@ -1,8 +1,8 @@
-### Readable App
+## Readable App
 
 This app was built as part of my React NanoDegree course from Udacity.
 
-## Prerequisites
+### Prerequisites
 
 It requires [this API server](https://github.com/udacity/reactnd-project-readable-starter.git)
 to work.
@@ -13,7 +13,7 @@ to work.
 Server listening on port 3001, Ctrl+C to stop
 ```
 
-## To run
+### To run
 
 $ git clone https://github.com/andrecoghi/readable-app.git
 
@@ -23,7 +23,7 @@ $ git clone https://github.com/andrecoghi/readable-app.git
 This will open app in http://localhost:3000
 ```
 
-## Libraries used
+### Libraries used
 
 The project uses the following dependencies:
 
