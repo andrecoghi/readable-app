@@ -49,20 +49,18 @@ class Dashboard extends Component {
     } else {
       result = postsArray;
     }
-
-    
+ 
     return (
       <div>
         <h3 className="center">Post List</h3>
         <div className="posts-order">
-        Sort by:
-       
-          {Array.from(getSortedFields(), ([key, value]) => (
+          {result.length > 1 ? <div>Sort by:</div> : <div></div>}
+          {result.length === 0 ? <div>;( Sorry, but there's no posts here</div> : <div></div>}
+          {result.length > 1 && Array.from(getSortedFields(), ([key, value]) => (
             <button id={key} key={key} onClick={e => this.handleOrderPosts(e)} className='button-action'>
               {value}
             </button>
           ))}
-          
         </div>
 
         <ul className="dashboard-list">
