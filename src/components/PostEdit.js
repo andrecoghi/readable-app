@@ -101,10 +101,15 @@ class PostEdit extends Component {
     }
 }
 function mapStateToProps ({posts, categories}, props) {
-
+    let postsArray = [];
+    if (Array.isArray(posts)) {
+      postsArray = posts;
+    }else{
+      postsArray = _fromJsonToArray(posts);
+    }
     return {
       categories,
-      post: _toMap(_fromJsonToArray(posts)).get(props.match.params.id),
+      post: _toMap(postsArray).get(props.match.params.id),
     }
   }
   

@@ -65,10 +65,16 @@ class Post extends Component {
 }
 
 function mapStateToProps ({autheduser, posts}, { id}) {
+    let postsArray = [];
+    if (Array.isArray(posts)) {
+      postsArray = posts;
+    }else{
+      postsArray = _fromJsonToArray(posts);
+    }
     return {
         autheduser,
-        post: _toMap(_fromJsonToArray(posts)).get(id),
-        id
+        post: _toMap(postsArray).get(id),
+        id,
     }
 }
 

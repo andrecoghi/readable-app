@@ -97,7 +97,7 @@ export function handleDeletePost(postId) {
   };
 }
 
-export function handleSavePost(title, body, category, id = null) {
+export function handleSavePost(title, body, category, id = null, idxPost = null) {
   return (dispatch, getState) => {
     const { autheduser } = getState();
 
@@ -113,9 +113,9 @@ export function handleSavePost(title, body, category, id = null) {
     return savePost(post).then(post => {
       dispatch(showLoading());
       if(id){
-        dispatch(addPost(post));
-      }else{
         dispatch(edit_post(post));
+      }else{
+        dispatch(addPost(post));
       }
       dispatch(hideLoading());
     });

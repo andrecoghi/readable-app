@@ -45,9 +45,9 @@ class Dashboard extends Component {
     const { category } = this.props.match.params;
 
     if (category) {
-      result = postsArray.filter(data => data.category === category);
+      result = postsArray.filter(data => data.category === category && data.deleted === false);
     } else {
-      result = postsArray;
+      result = postsArray.filter(data => data.deleted === false);
     }
  
     return (
@@ -79,7 +79,9 @@ class Dashboard extends Component {
 
 function mapStateToProps({ posts }) {
   let postsArray = [];
-  if (posts) {
+  if (Array.isArray(posts)) {
+    postsArray = posts;
+  }else{
     postsArray = _fromJsonToArray(posts);
   }
   return {
