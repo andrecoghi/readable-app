@@ -40,32 +40,18 @@ export const edit_post = post => {
   };
 };
 
-function addPost(post) {
+function add_post(post) {
   return {
     type: ADD_POST,
     post
   };
 }
 
-function deletePost(id) {
+function delete_post(id) {
   return {
     type: DELETE_POST,
     id
   };
-}
-
-export function increasePostCommentCount (id) {
-  return {
-    type: INCREASE_POST_COMMENT_COUNT,
-    id,
-  }
-}
-
-export function decreasePostCommentCount (id) {
-  return {
-    type: DECREASE_POST_COMMENT_COUNT,
-    id,
-  }
 }
 
 export function handlePostVote(postId, option) {
@@ -80,7 +66,6 @@ export function handlePostVote(postId, option) {
   };
 }
 
-
 export function handlePost(postId) {
   return dispatch => {
     return fetchPost(postId).then(post => {
@@ -92,7 +77,7 @@ export function handlePost(postId) {
 export function handleDeletePost(postId) {
   return dispatch => {
     return fetchDeletePost(postId).then(() => {
-      dispatch(deletePost(postId));
+      dispatch(delete_post(postId));
     });
   };
 }
@@ -115,7 +100,7 @@ export function handleSavePost(title, body, category, id = null, idxPost = null)
       if(id){
         dispatch(edit_post(post));
       }else{
-        dispatch(addPost(post));
+        dispatch(add_post(post));
       }
       dispatch(hideLoading());
     });
