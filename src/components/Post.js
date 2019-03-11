@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { formatDate, _toMap, _fromJsonToArray} from '../utils/helpers'
 import { handlePostVote, handleDeletePost, handleSavePost } from '../actions/posts'
 import { Link, withRouter } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 class Post extends Component {
 
@@ -26,14 +27,15 @@ class Post extends Component {
 
     render() {
         const { post, autheduser, id } = this.props
-
-        if (post === null || post === undefined) {
-            return <p>We are having some trouble to load...</p>
+        
+        //when we press F5 we lost the post so we redirect again   
+        if (!post) {
+            return <Redirect to={`/${this.props.match.params.categoryPath}/${this.props.match.params.id}`} />
         }
-
+       
         return (
                 <div className='tweet-info'>
-                            <Link to={`/post/${id}`} className='tweet' >
+                            <Link to={`/${post.category}/${id}`} className='tweet' >
                                 <h3>{post.title}</h3>
                             </Link>
                             <div><p>{post.category}</p></div>

@@ -42,10 +42,10 @@ class Dashboard extends Component {
     const { postsArray } = this.props;
     let result = [];
 
-    const { category } = this.props.match.params;
+    const { categoryPath } = this.props.match.params;
 
-    if (category) {
-      result = postsArray.filter(data => data.category === category && data.deleted === false);
+    if (categoryPath) {
+      result = postsArray.filter(data => data.category === categoryPath && data.deleted === false);
     } else {
       result = postsArray.filter(data => data.deleted === false);
     }

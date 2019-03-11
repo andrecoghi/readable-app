@@ -5,6 +5,7 @@ import Comment from './Comment'
 import PostNew from './PostNew'
 import { _toArray} from '../utils/helpers'
 import { handleComments} from '../actions/comments'
+import { Redirect } from 'react-router-dom'
 
 class PostPage extends Component {
 
@@ -16,6 +17,9 @@ class PostPage extends Component {
         const { id, comments} = this.props
         const comment = "COMMENT"
 
+        if (id === null || id === undefined) {
+            return <Redirect to='/404' />
+        }
         return (
             <div>
                 <Post id={id}  />

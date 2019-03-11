@@ -19,7 +19,7 @@ class Nav extends Component {
             categoriesArray.map(category => (
               <li key={category.name}>
                 <NavLink
-                  to={`/category/${category.path}`}
+                  to={`/${category.path}`}
                   activeClassName="active"
                 >
                   {category.name}

@@ -6,6 +6,7 @@ import LoadingBar from 'react-redux-loading-bar'
 import PostNew from "./PostNew";
 import PostEdit from "./PostEdit";
 import PostPage from "./PostPage";
+import PageNotFound from './PageNotFound';
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Nav from "./Nav";
@@ -26,10 +27,11 @@ class App extends Component {
               <div>
                 <Nav />
                 <Route path="/" exact component={Dashboard} />
-                <Route path="/category/:category" exact component={Dashboard} />
-                <Route path="/post/:id" exact component={PostPage} />
+                <Route path="/:categoryPath" exact component={Dashboard} />
+                <Route path="/:categoryPath/:id" exact component={PostPage} />
                 <Route path="/post/edit/:id" exact component={PostEdit} />
                 <Route path="/new" exact component={PostNew} />
+                <Route path='/404' exact component={PageNotFound} />
               </div>
             )}
           </div>
@@ -40,6 +42,7 @@ class App extends Component {
 }
 
 function mapStateToProps({ posts }) {
+  
   return {
     loading: posts === null
   };
