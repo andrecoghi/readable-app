@@ -53,53 +53,53 @@ class PostNew extends Component {
 
         return (
             <Fragment>
-            <div>
-                {!comment && (
                     <div>
-                        <h3 className='center'>Compose new Post</h3>
-                    </div>
-                )}  
-                {comment && (
-                    <div>
-                        <h3 className='center'>Send a comment</h3>
-                    </div>
-                )}  
-            <form className='new-tweet' onSubmit={this.handleSubmit}>
-            {!comment && (
-                <Fragment>
-                    <input type='text' id='title' placeholder='Enter Post title...'
-                            value={title} onChange={this.handleChange} required/>   
-                    <select onChange={this.handleChange} value={this.state.category} id='category' required>
-                        <option value="">Choose a category</option>
-                            {Object.keys(this.props.categories).map(category =>
-                            <option value={this.props.categories[category].path} 
-                                key={this.props.categories[category].path}>
-                                {this.props.categories[category].path}
-                            </option>
+                        {!comment && (
+                            <div>
+                                <h3 className='center'>Compose new Post</h3>
+                            </div>
+                        )}  
+                        {comment && (
+                            <div>
+                                <h3 className='center'>Send a comment</h3>
+                            </div>
+                        )}  
+                    <form className='new-post' onSubmit={this.handleSubmit}>
+                    {!comment && (
+                        <Fragment>
+                            <input type='text' id='title' placeholder='Enter title here...'
+                                    value={title} onChange={this.handleChange} required/>   
+                            <select onChange={this.handleChange} value={this.state.category} id='category' required>
+                                <option value="">Choose a category</option>
+                                    {Object.keys(this.props.categories).map(category =>
+                                    <option value={this.props.categories[category].path} 
+                                        key={this.props.categories[category].path}>
+                                        {this.props.categories[category].path}
+                                    </option>
+                                )}
+                            </select>  
+                        </Fragment>
+                        )}  
+                        <textarea id="body"
+                            placeholder="What are you thinking?"
+                            value={body}
+                            onChange={this.handleChange}
+                            className='textarea'
+                            maxLength={280}
+                        />
+                        {postLeft <= 100 && (
+                            <div className='post-length'>
+                                {postLeft}
+                            </div>
                         )}
-                    </select>  
-                </Fragment>
-                )}  
-                <textarea id="body"
-                    placeholder="What's happening?"
-                    value={body}
-                    onChange={this.handleChange}
-                    className='textarea'
-                    maxLength={280}
-                />
-                {postLeft <= 100 && (
-                    <div className='tweet-length'>
-                        {postLeft}
+                        <button
+                            className='btn'
+                            type='submit'
+                            disabled={body === ''}>
+                            Submit
+                        </button>
+                        </form>
                     </div>
-                )}
-                <button
-                    className='btn'
-                    type='submit'
-                    disabled={body === ''}>
-                    Submit
-                </button>
-                </form>
-            </div>
              </Fragment>
         )
     }

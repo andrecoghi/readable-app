@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
+import { _toArray} from '../utils/helpers'
 
-class Nav extends Component {
+class Nav extends PureComponent {
   render() {
-
     const categoriesArray = _toArray(this.props.categories)
 
     return (
@@ -41,10 +41,6 @@ function mapStateToProps({ categories }) {
   return {
     categories
   };
-}
-
-function _toArray(obj) {
-    return Object.keys(obj).map(i => obj[i]);
 }
 
 export default connect(mapStateToProps)(Nav);

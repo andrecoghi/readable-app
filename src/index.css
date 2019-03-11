@@ -74,57 +74,59 @@ li {
   margin: 10px;
 }
 
-.tweet {
+.post {
   max-width: 590px;
-  padding: 10px;
   display: inline;
-  margin: 0 auto;
+  margin: 0 0 0;
   border: none;
   background: transparent;
   cursor: pointer;
   padding: 0 0 20px;
+  color: #969696;
 }
 
-.tweet-info {
-  margin: 0 0 20px;
-  padding: 0 0 20px;
+.post-info {
+  margin: 0 0 0;
   text-align: center;
   flex-direction: column;
+}
 
-  
+.post-center {
+  margin: 0 0 0;
+  text-align: center;
 }
 
 /* Hacky but less typing in the video */
-.tweet-info > div > span:first-child {
+.post-info > div > span:first-child {
   font-weight: bold;
   margin-right: 5px;
 }
-.tweet-info > div > span:nth-child(2) {
+.post-info > div > span:nth-child(2) {
   color: #969696;
   font-size: 16px;
 }
-.tweet-info > div > div {
+.post-info > div > div {
   color: #969696;
   font-size: 15px;
 }
-.tweet-info > div > p {
+.post-info > div > p {
   font-size: 18px;
   margin: 10px 0;
 }
-.tweet-icons {
+.post-icons {
   display: flex;
   align-items: center;
 }
-.tweet-icons > span {
+.post-icons > span {
   color: #969696;
   margin: 0 15px 0 5px;
   font-size: 18px !important;
 }
-.tweet-icon {
+.post-icon {
   font-size: 27px;
   color: #697784;
 }
-.tweet-icon:hover {
+.post-icon:hover {
   color: #00b5d6;
   cursor: pointer;
 }
@@ -142,7 +144,7 @@ li {
   border: none;
 }
 
-.new-tweet {
+.new-post {
   width: 100%;
   max-width: 590px;
   margin: 0 auto;
@@ -158,7 +160,7 @@ li {
   height: 100px;
 }
 
-.tweet-length {
+.post-length {
   text-align: right;
   margin-top: 10px;
   font-size: 20px;
@@ -196,13 +198,13 @@ li {
 }
 
 .post-score-inner {
-  display: block;
+  font-size: 18px;
   background: #fff;
   color: rgb(5, 6, 7);
   font-weight: bold;
   width: 54px;
   height: 54px;
-  border-radius: 40px;
+  vertical-align: bottom;
 }
 .post-vote {
   display: inline-block;
@@ -322,10 +324,6 @@ li {
   margin-left: 0;
 }
 
-.post-actions {
-  margin: 10px 0 20px;
-}
-
 /* Posts Order */
 .posts-order {
   text-align: center;
@@ -336,4 +334,17 @@ li {
 .posts-order button {
   margin: 0 0 0 10px;
   text-transform: capitalize;
+}
+
+.column {
+  margin: 0 0 0 10px;
+  display: inline-block;
+  vertical-align: middle;
+  
+}
+.actionButtons {
+  margin: 20px;
+  max-width: 300px;
+  display: inline-block;
+  vertical-align: middle;
 }

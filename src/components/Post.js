@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatDate, _toMap, _fromJsonToArray} from '../utils/helpers'
-import { handlePostVote, handleDeletePost, handleSavePost } from '../actions/posts'
+import { handlePostVote, handleDeletePost } from '../actions/posts'
 import { Link, withRouter } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
+import { FaThumbsUp, FaThumbsDown, FaEdit, FaTrash, FaComment  } from 'react-icons/lib/fa';
 
 class Post extends Component {
 
-     handleVote = (e) => {
+     handleVote = (voteType) => {
         const { dispatch, id } = this.props
-        const voteType = e.target.id
         dispatch(handlePostVote(id, voteType))
     }
 
@@ -17,56 +17,62 @@ class Post extends Component {
         e.preventDefault()
         const { dispatch, id } = this.props
         dispatch(handleDeletePost(id))
+        this.props.history.push('/');
     }    
 
-    handleEdit = (e) => {
-        e.preventDefault()
-        const { dispatch, id } = this.props
-        dispatch(handleSavePost(id))
+    handleEdit = (id) => {
+        this.props.history.push(`/post/edit/${id}`);
     }     
 
     render() {
         const { post, autheduser, id } = this.props
         
-        //when we press F5 we lost the post so we redirect again   
+        //when we press F5 we lost the post
         if (!post) {
-            return <Redirect to={`/${this.props.match.params.categoryPath}/${this.props.match.params.id}`} />
+            return <Redirect to='/404' />
         }
        
         return (
-                <div className='tweet-info'>
-                            <Link to={`/${post.category}/${id}`} className='tweet' >
-                                <h3>{post.title}</h3>
-                            </Link>
+                <div className="post-center">
+                        <Link to={`/${post.category}/${id}`}>
+                            <h3>{post.title}</h3>
+                        </Link>
+
+                        <div className='post'>                            
                             <div><p>{post.category}</p></div>
-                            <div>{formatDate(post.timestamp)} Comments: {post.commentCount !== 0 ? post.commentCount : 0}</div>
+                            <div>{formatDate(post.timestamp)} <FaComment/> {post.commentCount !== 0 ? post.commentCount : 0}</div>
                             <div>By @{autheduser} </div>
-                            <div className='post-actions'>
-                                <Link to={`/post/edit/${id}`} className='tweet' >
-                                    <button className='button-action'>Edit Post</button>
-                                </Link>
-                                <button onClick={this.handleDelete} className='button-action'>Delete Post</button>
-                            </div>                            
+                        </div>
+                            <div className='actionButtons'>
+                                <div className="column" id="edit" onClick={() => this.handleEdit(post.id)}>
+                                    <FaEdit/> Edit
+                                </div>
+                                <div className="column" id="delete" onClick={this.handleDelete}>
+                                     <FaTrash/> Delete
+                                </div>
+                            </div>                                                      
                                 <p>{post.body}</p>
-                            <div>
-                                <div className='post-votescore'>
-                                    <button id="upVote" onClick={this.handleVote} 
-                                        className='post-vote post-vote-up'>Vote Up</button>
-                                        <span className='post-score'>
-                                            <span className='post-score-inner'>
-                                            {post.voteScore}
-                                            </span>
+                            
+                                <div className='actionButtons'>
+                                    <div className="column" id="upVote" onClick={() => this.handleVote('upVote')}>
+                                        <FaThumbsUp/> UpVote
+                                    </div>
+                                    <div className="column">
+                                        <span className='post-score-inner'>
+                                                {post.voteScore}    
                                         </span>
-                                    <button id="downVote" onClick={this.handleVote} 
-                                        className='post-vote post-vote-down'>Vote Down</button>
-                                </div> 
-                            </div>                                                     
+                                    </div>                                
+                                    <div className="column" id="downVote" onClick={() => this.handleVote('downVote')}>
+                                        DownVote <FaThumbsDown/>
+                                    </div>
+                                </div>                                 
+                                                                             
                 </div> 
         )
     }
 }
 
-function mapStateToProps ({autheduser, posts}, { id}) {
+function mapStateToProps ({autheduser, posts}, {id}) {
     let postsArray = [];
     if (Array.isArray(posts)) {
       postsArray = posts;

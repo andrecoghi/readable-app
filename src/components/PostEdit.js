@@ -38,7 +38,7 @@ class PostEdit extends Component {
     render() {
 
         if (this.state.id === null || this.state.id === undefined) {
-            return <p>We are having some trouble to load... ;( please go to home and start the process again</p>
+            return <Redirect to='/404' />
         }
 
         const { title, body, toHome} = this.state
@@ -56,7 +56,7 @@ class PostEdit extends Component {
                     <h3 className='center'>Edit Post</h3>
                 </div>
 
-            <form className='new-tweet' onSubmit={this.handleSubmit}>
+            <form className='new-post' onSubmit={this.handleSubmit}>
             
                 <Fragment>
                     <input type='text' id='title' placeholder='Enter Post title...'
@@ -80,7 +80,7 @@ class PostEdit extends Component {
                     maxLength={280}
                 />
                 {postLeft <= 100 && (
-                    <div className='tweet-length'>
+                    <div className='post-length'>
                         {postLeft}
                     </div>
                 )}
@@ -90,8 +90,7 @@ class PostEdit extends Component {
                     disabled={body === ''}>
                     Submit
                 </button>
-                
-                { this.state.submitedFlag &&
+                    { this.state.submitedFlag &&
                         <p>Your post was updated.</p>
                     }
                 </form>
@@ -112,6 +111,5 @@ function mapStateToProps ({posts, categories}, props) {
       post: _toMap(postsArray).get(props.match.params.id),
     }
   }
-  
 
 export default connect(mapStateToProps)(PostEdit)

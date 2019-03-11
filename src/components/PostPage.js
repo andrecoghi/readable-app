@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Post from './Post'
 import Comment from './Comment'
 import PostNew from './PostNew'
-import { _toArray} from '../utils/helpers'
+import { _toArray, _toMap, _fromJsonToArray} from '../utils/helpers'
 import { handleComments} from '../actions/comments'
 import { Redirect } from 'react-router-dom'
 
@@ -14,10 +14,10 @@ class PostPage extends Component {
      }
    
     render() {
-        const { id, comments} = this.props
+        const { id, comments, post} = this.props
         const comment = "COMMENT"
 
-        if (id === null || id === undefined) {
+        if (post === null || post === undefined) {
             return <Redirect to='/404' />
         }
         return (
@@ -41,8 +41,14 @@ class PostPage extends Component {
     }
 }
 
-function mapStateToProps ({comments}, props) {
-   
+function mapStateToProps ({comments, posts}, props) {
+    let postsArray = [];
+    if (Array.isArray(posts)) {
+      postsArray = posts;
+    }else{
+      postsArray = _fromJsonToArray(posts);
+    }
+
     const { id } = props.match.params
 
     let commentsArray = [];
@@ -51,7 +57,8 @@ function mapStateToProps ({comments}, props) {
     }
     return {
         id,
-        comments: commentsArray
+        comments: commentsArray,
+        post: _toMap(postsArray).get(id),
     }
 }
 
