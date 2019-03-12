@@ -33,7 +33,7 @@ export default function posts(state = {}, action) {
             timestamp: post.timestamp,
             title: post.title,
             body: post.body,
-            author: post.authory,
+            author: post.author,
             category: post.category,
             voteScore: post.voteScore,
             deleted: post.deleted,
@@ -48,6 +48,7 @@ export default function posts(state = {}, action) {
           return Object.assign({}, post, {
             timestamp: action.post.timestamp,
             title: action.post.title,
+            author: action.post.author,
             body: action.post.body,
             category: action.post.category,
             voteScore: action.post.voteScore,

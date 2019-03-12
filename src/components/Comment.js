@@ -31,30 +31,28 @@ class Comment extends Component {
       }
 
     render() {
-        const { comment, autheduser } = this.props
+        const { comment } = this.props
 
         if (comment === null) {
             return <p>This Comment doesn't exist</p>
         }
 
-        const {voteScore, body, timestamp} = comment
+        const {voteScore, body, timestamp, author} = comment
 
         return (
                    <Fragment>
                         <div className='comment-list-votescore'> 
                             <div>
                                 <div>{formatDate(timestamp)}</div>
-                                <div>By @{autheduser} </div>
+                                <div>By @{author} </div>
                                 <p>{body}</p>
                             </div>
-                        
-                            
+
                             <button id="upVote" onClick={this.handleVote} 
                                 className='button-action comment-list-vote comment-list-vote-up'>Vote Up</button>
                                     <span className='comment-list-score'>{voteScore}</span>
-                                    <button id="downVote" onClick={this.handleVote} 
-                                        className='button-action comment-list-vote comment-list-vote-down'>Vote Down</button>
-
+                            <button id="downVote" onClick={this.handleVote} 
+                                className='button-action comment-list-vote comment-list-vote-down'>Vote Down</button>
 
                             <div className='comment-actions'>
                             <button onClick={(e) => this.handleDelete(e, comment)} className='button-action'>Delete Comment</button>
@@ -64,22 +62,18 @@ class Comment extends Component {
                         {this.state.editMode === comment.id &&
                                 <CommentForm comment={comment} />
                         }
-                   </Fragment>
-                   
-                    
-                    
+                   </Fragment>        
         )
     }
 }
 
-function mapStateToProps ({autheduser, posts, comments}, { id}) {
+function mapStateToProps ({comments}, { id}) {
     let comment = {}
     if(comments){
         comment = _toMap(comments.comments).get(id);
     }
 
     return {
-        autheduser,
         category: comment ? comment.category : 'default_category',
         comment
     }

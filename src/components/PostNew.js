@@ -9,7 +9,8 @@ class PostNew extends Component {
     state = {
         title: '' ,
 		body: '' ,
-		category: '' ,
+        category: '' ,
+        author: '' ,
         toHome: false,
         submitedFlag: false,
     }
@@ -25,31 +26,28 @@ class PostNew extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
 
-        const { title , body , category  } = this.state
+        const { title , body , category, author } = this.state
         const { dispatch, id, comment} = this.props
         
         if(comment){
-            // Add Comment to Store
-            dispatch(handleAddComment(id , body))
+            dispatch(handleAddComment(id , body, author))
         }else{
-            // Add Post to Store
-            dispatch(handleSavePost(title , body , category, id))
+            dispatch(handleSavePost(title , body , category, author, id))
         }
         this.setState(() => ({
-            title: '' , body: '',
+            title: '' , body: '', author: '',
             toHome: id ? false : true, submitedFlag: true,
         }))
     }
     render() {
-     
-        const { title, body, toHome} = this.state
+        const { title, body, toHome, author} = this.state
         const { comment} = this.props
 
-        if (toHome === true) {
-            return <Redirect to={"/"}   />
-        }
+            if (toHome === true) {
+                return <Redirect to={"/"}   />
+            }
 
-        const postLeft = 280 - body.length
+            const postLeft = 280 - body.length
 
         return (
             <Fragment>
@@ -69,6 +67,8 @@ class PostNew extends Component {
                         <Fragment>
                             <input type='text' id='title' placeholder='Enter title here...'
                                     value={title} onChange={this.handleChange} required/>   
+                            <input type='text' id='author' placeholder='Enter your name here...'
+                                    value={author} onChange={this.handleChange} required/>                                      
                             <select onChange={this.handleChange} value={this.state.category} id='category' required>
                                 <option value="">Choose a category</option>
                                     {Object.keys(this.props.categories).map(category =>
@@ -80,6 +80,9 @@ class PostNew extends Component {
                             </select>  
                         </Fragment>
                         )}  
+                        <input type='text' id='author' placeholder='Enter your name here...'
+                            value={author} onChange={this.handleChange} required/>                                      
+
                         <textarea id="body"
                             placeholder="What are you thinking?"
                             value={body}

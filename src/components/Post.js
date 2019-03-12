@@ -4,7 +4,7 @@ import { formatDate, _toMap, _fromJsonToArray} from '../utils/helpers'
 import { handlePostVote, handleDeletePost } from '../actions/posts'
 import { Link, withRouter } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
-import { FaThumbsUp, FaThumbsDown, FaEdit, FaTrash, FaComment  } from 'react-icons/lib/fa';
+import { FaThumbsUp, FaThumbsDown, FaEdit, FaTrash, FaComment  } from 'react-icons/fa';
 
 class Post extends Component {
 
@@ -25,7 +25,7 @@ class Post extends Component {
     }     
 
     render() {
-        const { post, autheduser, id } = this.props
+        const { post, id } = this.props
         
         //when we press F5 we lost the post
         if (!post) {
@@ -41,7 +41,7 @@ class Post extends Component {
                         <div className='post'>                            
                             <div><p>{post.category}</p></div>
                             <div>{formatDate(post.timestamp)} <FaComment/> {post.commentCount !== 0 ? post.commentCount : 0}</div>
-                            <div>By @{autheduser} </div>
+                            <div>By @{post.author} </div>
                         </div>
                             <div className='actionButtons'>
                                 <div className="column" id="edit" onClick={() => this.handleEdit(post.id)}>
@@ -72,7 +72,7 @@ class Post extends Component {
     }
 }
 
-function mapStateToProps ({autheduser, posts}, {id}) {
+function mapStateToProps ({posts}, {id}) {
     let postsArray = [];
     if (Array.isArray(posts)) {
       postsArray = posts;
@@ -80,7 +80,6 @@ function mapStateToProps ({autheduser, posts}, {id}) {
       postsArray = _fromJsonToArray(posts);
     }
     return {
-        autheduser,
         post: _toMap(postsArray).get(id),
         id,
     }

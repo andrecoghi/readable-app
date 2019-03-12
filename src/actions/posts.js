@@ -82,15 +82,14 @@ export function handleDeletePost(postId) {
   };
 }
 
-export function handleSavePost(title, body, category, id = null, idxPost = null) {
-  return (dispatch, getState) => {
-    const { autheduser } = getState();
+export function handleSavePost(title, body, category, author, id = null) {
+  return (dispatch) => {
 
     const post = {
       id: id ? id : generateUID(),
       title,
       body,
-      author: autheduser,
+      author,
       category,
       timestamp: Date.now(),
     };

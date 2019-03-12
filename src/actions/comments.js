@@ -93,15 +93,13 @@ export function handleComments(postId) {
   };
 }
 
-export function handleAddComment(postId, body) {
-  return (dispatch, getState) => {
-    const { autheduser } = getState();
-
+export function handleAddComment(postId, body, author) {
+  return (dispatch) => {
     const commentData = {
       id: generateUID(),
       timestamp: Date.now(),
       body,
-      author: autheduser,
+      author,
       parentId: postId,
       voteScore: 0,
       deleted: false,

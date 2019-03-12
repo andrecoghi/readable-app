@@ -26,10 +26,10 @@ class PostEdit extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
 
-        const { title , body , category, id } = this.state
+        const { title , body , category, id, author } = this.state
 
         // Update Post on Store
-        this.props.dispatch(handleSavePost(title , body , category, id))
+        this.props.dispatch(handleSavePost(title , body , category, author, id))
    
         this.setState(() => ({
             toHome: id ? false : true, submitedFlag: true,
@@ -41,7 +41,7 @@ class PostEdit extends Component {
             return <Redirect to='/404' />
         }
 
-        const { title, body, toHome} = this.state
+        const { title, body, toHome, author} = this.state
 
         if (toHome === true) {
             return <Redirect to={"/"}   />
@@ -60,7 +60,9 @@ class PostEdit extends Component {
             
                 <Fragment>
                     <input type='text' id='title' placeholder='Enter Post title...'
-                            value={title} onChange={this.handleChange} required/>   
+                            value={title} onChange={this.handleChange} required/>  
+                    <input type='text' id='author' placeholder='Enter your name here...'
+                                    value={author} onChange={this.handleChange} required/>                               
                     <select onChange={this.handleChange} value={this.state.category} id='category' required>
                         <option value="">Choose a category</option>
                             {Object.keys(this.props.categories).map(category =>
